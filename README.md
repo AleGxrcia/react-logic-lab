@@ -8,7 +8,7 @@
 # ⚛️ React-Logic-Lab
 
 > **Un laboratorio de lógica de negocio en React impulsado por TDD.**
-> No es un curso. No son mini-proyectos visuales. Es un repositorio que demuestra cómo un desarrollador profesional **piensa, diseña y resuelve** problemas reales.
+> No es un curso. No son mini-proyectos visuales. Es un repositorio que demuestra cómo un desarrollador **piensa, diseña y resuelve** problemas reales.
 
 ---
 
@@ -148,7 +148,7 @@ npm run build          # Build de producción
 - ✅ Separación limpia entre lógica de negocio y presentación
 - ✅ Conocimiento de patrones de diseño aplicados a frontend
 - ✅ Comprensión de cuándo y por qué usar cada herramienta
-- ✅ Testing profesional: unitario, integración y mocking de red
+- ✅ Testing: unitario, integración y mocking de red
 
 ---
 

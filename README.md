@@ -123,7 +123,7 @@ npm run build          # Build de producción
 
 | #  | Ejercicio                      | Estado |
 | -- | ------------------------------ | ------ |
-| 01 | Toggle Switch                  | ⬜     |
+| 01 | Toggle Switch                  | ✅     |
 | 02 | Character Counter              | ⬜     |
 | 03 | Timer / Stopwatch              | ⬜     |
 | 04 | Multi-Step Form                | ⬜     |

@@ -10,7 +10,21 @@
 //
 // ¡Haz que los tests pasen!
 
-export default function ToggleSwitch() {
-    // Tu código aquí
-    return null
+import { useState } from "react";
+
+export default function ToggleSwitch({ initialState = false, label }) {
+	const [isOn, setIsOn] = useState(initialState);
+
+	const handleToggle = () => {
+		setIsOn((is) => !is);
+	}
+    
+	return (
+		<div>
+			{label && <span>{label}</span>}
+			<button aria-pressed={isOn} onClick={handleToggle} type="button">
+				{isOn ? "ON" : "OFF"}
+			</button>
+		</div>
+	);
 }

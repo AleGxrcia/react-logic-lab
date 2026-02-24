@@ -18,7 +18,47 @@
 //
 // ¡Haz que los tests pasen!
 
-export default function CharacterCounter() {
-    // Tu código aquí
-    return null
-}
+import { useEffect, useState } from "react"
+
+export default function CharacterCounter({ maxLength, onSubmit, onLimitReached }) {
+	const [text, setText] = useState("");
+	
+	const remaining = maxLength - text.length;
+	const isOver = remaining < 0;
+	const isWarning = !isOver && remaining <= Math.floor(maxLength * 0.2);
+	const isEmpty = text.length === 0;
+
+	useEffect(() => {
+		if (isOver && onLimitReached) {
+			onLimitReached(); 
+		} 
+	}, [isOver, onLimitReached]);
+
+	const handleSubmit = () => {
+		if (!isEmpty && !isOver) {
+			onSubmit(text); 
+		}
+	}
+
+	return (
+		<div>
+			<textarea 
+				value={text} 
+				onChange={(e) => setText(e.target.value)}
+				placeholder="Escribe algo aqui..."
+			/>
+			<span 
+				data-testid="char-count" 
+				className={`${isOver ? "error" : isWarning ? "warning" : ""}`}
+			>
+				{remaining}
+			</span>
+			<button 
+				onClick={handleSubmit}
+				disabled={isEmpty || isOver} 
+			>
+				Enviar
+			</button>
+		</div>
+	)
+};

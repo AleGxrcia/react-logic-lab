@@ -5,7 +5,7 @@ import Timer from './Timer'
 
 describe('Timer', () => {
     beforeEach(() => {
-        vi.useFakeTimers()
+        vi.useFakeTimers({ shouldAdvanceTime: true })
     })
 
     afterEach(() => {

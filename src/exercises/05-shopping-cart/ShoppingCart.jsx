@@ -12,7 +12,28 @@
 //
 // ¡Haz que los tests pasen!
 
-export default function ShoppingCart() {
-    // Tu código aquí
-    return null
+import { useCart } from "./useCart"
+
+export default function ShoppingCart({ initialItems = [] }) {
+	const { items, totals, removeItem } = useCart(initialItems);
+
+  if (items.length === 0) return <p>Carrito vacío</p>;
+
+	return (
+    <div>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            <span>{item.name}</span>
+            <span>{item.price}</span>
+            <span>{item.quantity}</span>
+            <button onClick={() => removeItem(item.id)}>
+              Eliminar
+            </button>
+          </li>
+        ))}
+      </ul>
+      <span data-testid="cart-total">{totals.total}</span>
+    </div>
+  )
 }

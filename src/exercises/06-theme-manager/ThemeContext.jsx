@@ -14,11 +14,45 @@
 //
 // ¡Haz que los tests pasen!
 
-import { createContext } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 export const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
-    // Tu código aquí
-    return null
+	const [theme, setTheme] = useState(() => {
+		try {
+			const stored = localStorage.getItem('theme');
+			return stored 
+				? stored
+				: window.matchMedia('(prefers-color-scheme: dark)').matches 
+					? 'dark' 
+					: 'light';
+		} catch (error) {
+      console.error('Error reading localStorage:', error);
+      return 'light';
+		}
+	});
+
+	useEffect(() => {
+		try {
+			localStorage.setItem('theme', theme)
+		} catch (error) {
+			console.error('Error saving to localStorage:', error);
+		}
+	}, [theme])
+	
+	const toggleTheme = () => {
+		setTheme((prev) =>  (prev === 'light' ? 'dark' : 'light'));
+	}
+
+	const value = {
+		theme,
+		toggleTheme
+	}
+
+	return (
+		<ThemeContext.Provider value={value}>
+			{children}
+		</ThemeContext.Provider>
+	);
 }

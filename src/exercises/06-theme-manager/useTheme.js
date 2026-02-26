@@ -8,6 +8,18 @@
 //
 // ¡Haz que los tests pasen!
 
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
+
 export function useTheme() {
-    // Tu código aquí
+	const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+
+  return {
+    theme: context.theme,
+    toggleTheme: context.toggleTheme
+  }
 }
